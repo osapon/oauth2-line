@@ -16,10 +16,10 @@ class Line extends AbstractProvider
 
     /**
      * @var array Default fields to be requested from the user profile.
-     * @link https://developers.line.me/restful-api/api-reference#getting_user_profile
+     * @link https://devdocs.line.me/en/#getting-user-profiles
      */
     protected $defaultUserFields = [
-        'mid',
+        'userId',
         'displayName',
         'pictureUrl',
         'statusMessage',
@@ -37,13 +37,13 @@ class Line extends AbstractProvider
 
     public function getBaseAccessTokenUrl(array $params)
     {
-        return 'https://api.line.me/v1/oauth/accessToken';
+        return 'https://api.line.me/v2/oauth/accessToken';
     }
 
     public function getResourceOwnerDetailsUrl(AccessToken $token)
     {
         $fields = array_merge($this->defaultUserFields, $this->userFields);
-        return 'https://api.line.me/v1/profile?' . http_build_query([
+        return 'https://api.line.me/v2/profile?' . http_build_query([
             'fields' => implode(',', $fields),
             'alt'    => 'json',
         ]);
