@@ -21,7 +21,7 @@ class LineUser implements ResourceOwnerInterface
 
     public function getId()
     {
-        return $this->response['mid'];
+        return $this->response['userId'];
     }
 
     /**
